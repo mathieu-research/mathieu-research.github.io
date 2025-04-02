@@ -39,6 +39,7 @@
             width: 120px;
             height: 120px;
             object-fit: cover;
+            object-position: center top;
             border-radius: 50%;
             margin-left: 2rem;
         }
@@ -67,26 +68,89 @@
         }
 
         .timeline {
-            position: relative;
+            display: flex;
+            flex-direction: column;
             margin-left: 1rem;
-            border-left: 3px solid #007acc;
-            padding-left: 1.5rem;
         }
 
         .job {
+            display: flex;
+            flex-direction: row;
             position: relative;
-            padding-bottom: 2rem;
+            margin-bottom: 2rem;
         }
 
-        .job::before {
-            content: "";
-            position: absolute;
-            left: -1.15rem;
-            top: 0.2rem;
-            width: 12px;
-            height: 12px;
-            background: #007acc;
+        .dot-line {
+            position: relative;
+            width: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            background-color: #00cca0;
             border-radius: 50%;
+            margin-top: 8px;
+            z-index: 1;
+        }
+
+        .dot-blink {
+            width: 7px;
+            height: 7px;
+            margin-top: 8px;
+            background-color: #00cca0;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 5px #00cca0, 0 0 10px #00cca0, 0 0 15px #00cca0;
+            animation: pulse 1s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 10px #00e0ff, 0 0 20px #00e0ff;
+            }
+
+            50% {
+                box-shadow: 0 0 15px #00e0ff, 0 0 30px #00e0ff;
+            }
+        }
+
+        .line {
+            width: 1px;
+            background-color: #000000;
+            flex-grow: 1;
+            margin-top: 5px;
+            margin-bottom: 0px;
+            transform-origin: top;
+            animation: laserDown 1s ease-out forwards;
+            box-shadow: 0 0 4px #f83a3a, 0 0 10px #f83a3a, 0 0 20px #ff0000;
+            opacity: 0;
+        }
+
+        @keyframes laserDown {
+            0% {
+                transform: scaleY(0);
+                opacity: 0;
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+        }
+
+        .content {
+            padding-left: 1rem;
+            flex-grow: 1;
         }
 
         .job-title {
@@ -103,6 +167,56 @@
         ul {
             padding-left: 1.2rem;
         }
+
+        .career-track {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin: 4rem auto;
+            max-width: 900px;
+            position: relative;
+            padding-top: 40px;
+        }
+
+        .career-track::before {
+            content: "";
+            position: absolute;
+            top: 50px;
+            /* height of the station + some spacing */
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #000000;
+            z-index: 0;
+        }
+
+        .station-wrapper {
+            position: relative;
+            text-align: center;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .station {
+            width: 20px;
+            height: 20px;
+            margin: 0 auto;
+            background-color: #2fb34b;
+            position: relative;
+            z-index: 2;
+        }
+
+        .station-label {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #333;
+            transform: rotate(-45deg);
+            transform-origin: center middle;
+            display: inline-block;
+            white-space: nowrap;
+            font-size: 0.75rem;
+        }
+
     </style>
 </head>
 
@@ -110,11 +224,11 @@
     <div class="container">
         <div class="header">
             <div class="header-text">
-                <h1>Mathieu Dupont</h1>
+                <h1>Mathieu Bertrand</h1>
                 <p class="contact">
-                    📧 mathieu@example.com &nbsp; | &nbsp;
-                    🌐 <a href="https://github.com/your-username" target="_blank">GitHub</a> &nbsp; | &nbsp;
-                    📍 Paris, France
+                    📧 bertrand.mathieu.74@gmail.com &nbsp; | &nbsp;
+                    🌐 <a href="https://github.com/mathieu-research" target="_blank">GitHub</a> &nbsp; | &nbsp;
+                    📍 Zürich, Switzerland
                 </p>
             </div>
             <img src="imgs/photo_cv.png" alt="Mathieu's Photo">
@@ -128,21 +242,70 @@
             </p>
         </div>
 
+        <div class="career-track">
+            <div class="station-wrapper">
+                <div class="station"></div>
+                <div class="station-label">2019<br>Research Assistant</div>
+            </div>
+            <div class="station-wrapper">
+                <div class="station"></div>
+                <div class="station-label">2020<br>Intern</div>
+            </div>
+            <div class="station-wrapper">
+                <div class="station"></div>
+                <div class="station-label">2021<br>Software Engineer</div>
+            </div>
+            <div class="station-wrapper">
+                <div class="station"></div>
+                <div class="station-label">2024<br>Lead Developer</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Timeline</h2>
+        </div>
+
         <div class="section">
             <h2>Experience</h2>
             <div class="timeline">
                 <div class="job">
-                    <div class="job-title">Software Engineer — TechCorp</div>
-                    <div class="job-date">2021 – Present</div>
-                    <p>Working on scalable web applications, improving performance, and mentoring junior developers.</p>
+                    <div class="dot-line">
+                        <div class="dot-blink"></div>
+                        <div class="line"></div>
+                    </div>
+                    <div class="content">
+                        <div class="job-title">Software Engineer — TechCorp</div>
+                        <div class="job-date">2021 – Present</div>
+                        <p>Working on scalable web applications, improving performance, and mentoring junior developers.
+                        </p>
+                    </div>
                 </div>
                 <div class="job">
-                    <div class="job-title">Intern — Data Solutions</div>
-                    <div class="job-date">2020 – 2021</div>
-                    <p>Assisted in developing internal dashboards for business insights using Python and SQL.</p>
+                    <div class="dot-line">
+                        <div class="dot"></div>
+                        <div class="line"></div>
+                    </div>
+                    <div class="content">
+                        <div class="job-title">Intern — Data Solutions</div>
+                        <div class="job-date">2020 – 2021</div>
+                        <p>Assisted in developing internal dashboards for business insights using Python and SQL.</p>
+                    </div>
+                </div>
+                <div class="job">
+                    <div class="dot-line">
+                        <div class="dot"></div>
+                        <!-- no .line here for the last item -->
+                    </div>
+                    <div class="content">
+                        <div class="job-title">Research Assistant — UniLab</div>
+                        <div class="job-date">2019 – 2020</div>
+                        <p>Conducted research in machine learning and published two papers on model interpretability.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
+
 
         <div class="section">
             <h2>Education</h2>
