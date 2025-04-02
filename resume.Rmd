@@ -1,6 +1,6 @@
 ---
-title: "Nick Strayer's Resume"
-author: Nick Strayer
+title: "Mathieu Bertrand's Resume"
+author: Mathieu Bertrand
 date: "`r Sys.Date()`"
 params:
   pdf_mode:
@@ -23,7 +23,7 @@ source("cv_printing_functions.r")
 
 # Read in all data and initialize a CV printer object
 CV <- create_CV_object(
-  data_location = "https://docs.google.com/spreadsheets/d/14MQICF2F8-vf8CKPF1m4lyGKO6_thG-4aSwat1e2TWc",
+  data_location = "https://docs.google.com/spreadsheets/d/1teIkJppQ6-TebIr3SJyKtJ6Fy__jbIerq6oSZIvefRk/edit?usp=sharing",
   pdf_mode = FALSE,
   resume_mode = TRUE
 )
@@ -104,7 +104,7 @@ Last updated on `r Sys.Date()`.
 Main
 ================================================================================
 
-Nick Strayer {#title}
+Mathieu Bertrand {#title}
 --------------------------------------------------------------------------------
 
 ```{r}
